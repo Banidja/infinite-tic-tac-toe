@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { XAndO } from "../types";
-import { calculateWinner } from "../utils/calculateWinner";
+import { calculateWinner } from "../lib/calculateWinner";
+import useScoreStore from "../lib/store";
+import { useTicTacToeContext } from "../providers/TicTacToeContext";
+import Score from "./Score";
 import Square from "./Square";
 
 const Board = () => {
-  const [squares, setSquares] = useState<Array<XAndO | null>>(
-    Array(9).fill(null)
-  );
-  const [isXNext, setIsXNext] = useState<boolean>(true);
-  const [moveOrder, setMoveOrder] = useState<Array<number>>([]);
+  const { isXNext, moveOrder, squares, setIsXNext, setMoveOrder, setSquares } =
+    useTicTacToeContext();
+
+  const { scores, increaseScore } = useScoreStore(); // Get the increaseScore function from the store
 
   const handleClick = (index: number) => {
     if (squares[index]) return;
@@ -17,11 +17,9 @@ const Board = () => {
     const player = isXNext ? "X" : "O";
 
     if (moveOrder.length === 6) {
-      const currentOpMove = player === "X" ? "O" : "X";
       const indexToRemove = moveOrder.findIndex(
-        (ind) => squares[ind] === currentOpMove
+        (ind) => squares[ind] === player
       );
-
       if (indexToRemove !== -1) {
         newSquares[moveOrder[indexToRemove]] = null;
         moveOrder.splice(indexToRemove, 1);
@@ -35,6 +33,7 @@ const Board = () => {
 
     const winner = calculateWinner(newSquares);
     if (winner) {
+      increaseScore(player);
       setSquares(Array(9).fill(null));
       setMoveOrder([]);
       setIsXNext(true);
@@ -43,7 +42,8 @@ const Board = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center">
+      <Score />
       <div className="grid grid-cols-3 gap-3">
         {Array.from({ length: 9 }).map((_, i) => (
           <Square value={squares[i]} onClick={() => handleClick(i)} />
