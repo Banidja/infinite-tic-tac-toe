@@ -8,24 +8,45 @@ const Board = () => {
     Array(9).fill(null)
   );
   const [isXNext, setIsXNext] = useState<boolean>(true);
+  const [moveOrder, setMoveOrder] = useState<Array<number>>([]);
 
   const handleClick = (index: number) => {
-    if (squares[index] || calculateWinner(squares)) return;
+    if (squares[index]) return;
 
     const newSquares = squares.slice();
-    newSquares[index] = isXNext ? "X" : "O";
+    const player = isXNext ? "X" : "O";
+
+    if (moveOrder.length === 6) {
+      const currentOpMove = player === "X" ? "O" : "X";
+      const indexToRemove = moveOrder.findIndex(
+        (ind) => squares[ind] === currentOpMove
+      );
+
+      if (indexToRemove !== -1) {
+        newSquares[moveOrder[indexToRemove]] = null;
+        moveOrder.splice(indexToRemove, 1);
+      }
+    }
+
+    newSquares[index] = player;
     setSquares(newSquares);
     setIsXNext(!isXNext);
+    moveOrder.push(index);
+
+    const winner = calculateWinner(newSquares);
+    if (winner) {
+      setSquares(Array(9).fill(null));
+      setMoveOrder([]);
+      setIsXNext(true);
+      return;
+    }
   };
 
   const renderSquare = (index: number) => (
     <Square value={squares[index]} onClick={() => handleClick(index)} />
   );
 
-  const winner = calculateWinner(squares);
-  const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${isXNext ? "X" : "O"}`;
+  const status = `Next player: ${isXNext ? "X" : "O"}`;
 
   return (
     <div className="flex flex-col items-center justify-center">
