@@ -8,7 +8,7 @@ const Board = () => {
   const { isXNext, moveOrder, squares, setIsXNext, setMoveOrder, setSquares } =
     useTicTacToeContext();
 
-  const { scores, increaseScore } = useScoreStore(); // Get the increaseScore function from the store
+  const { increaseScore, restartScore } = useScoreStore();
 
   const handleClick = (index: number) => {
     if (squares[index]) return;
@@ -41,13 +41,29 @@ const Board = () => {
     }
   };
 
+  const handleReset = () => {
+    setSquares(Array(9).fill(null));
+    setMoveOrder([]);
+    setIsXNext(true);
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Score />
+    <div className="flex flex-col items-start gap-6">
+      <div className="flex w-full justify-end">
+        <button onClick={handleReset} className="text-2xl font-bold">
+          reset game
+        </button>
+      </div>
       <div className="grid grid-cols-3 gap-3">
         {Array.from({ length: 9 }).map((_, i) => (
           <Square value={squares[i]} onClick={() => handleClick(i)} />
         ))}
+      </div>
+      <div className="flex w-full justify-between">
+        <Score />
+        <button onClick={restartScore} className="text-2xl font-bold">
+          reset score
+        </button>
       </div>
     </div>
   );

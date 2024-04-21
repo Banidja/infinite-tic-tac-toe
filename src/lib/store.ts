@@ -6,6 +6,7 @@ const storageKey = "score";
 interface ScoreState {
   scores: { X: number; O: number };
   increaseScore: (player: XAndO) => void;
+  restartScore: () => void;
 }
 
 const loadFromStorage = () => {
@@ -20,6 +21,11 @@ const useScoreStore = create<ScoreState>((set) => ({
       const newScores = { ...state.scores, [player]: state.scores[player] + 1 };
       localStorage.setItem(storageKey, JSON.stringify(newScores));
       return { scores: newScores };
+    }),
+  restartScore: () =>
+    set(() => {
+      localStorage.removeItem(storageKey);
+      return { scores: { X: 0, O: 0 } };
     }),
 }));
 

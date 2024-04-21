@@ -3,9 +3,9 @@ import useScoreStore from "../lib/store";
 const Score = () => {
   const { scores } = useScoreStore();
   return (
-    <div>
-      <p>X Score: {scores.X}</p>
-      <p>O Score: {scores.O}</p>
+    <div className="flex items-center gap-10 text-2xl font-bold">
+      <p>X {scores.X}</p>
+      <p>O {scores.O}</p>
     </div>
   );
 };
