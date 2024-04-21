@@ -42,17 +42,12 @@ const Board = () => {
     }
   };
 
-  const renderSquare = (index: number) => (
-    <Square value={squares[index]} onClick={() => handleClick(index)} />
-  );
-
-  const status = `Next player: ${isXNext ? "X" : "O"}`;
-
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="mb-4">{status}</div>
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="grid grid-cols-3 gap-3">
-        {Array.from({ length: 9 }).map((_, i) => renderSquare(i))}
+        {Array.from({ length: 9 }).map((_, i) => (
+          <Square value={squares[i]} onClick={() => handleClick(i)} />
+        ))}
       </div>
     </div>
   );
