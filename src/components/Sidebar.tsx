@@ -2,9 +2,7 @@ import { useTicTacToeContext } from "../providers/TicTacToeContext";
 import Info from "./Info/Info";
 import { Switch } from "./Switch";
 
-type Props = {};
-
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   const { gameMode, setIsXNext, setMoveOrder, setSquares, toggleGameMode } =
     useTicTacToeContext();
 
@@ -19,8 +17,6 @@ const Sidebar = (props: Props) => {
     handleReset();
   };
 
-  console.log("gameMode", gameMode);
-
   return (
     <div className="flex items-center space-x-2 py-[325px]">
       <Info />
@@ -30,7 +26,7 @@ const Sidebar = (props: Props) => {
         id="game-mode"
       />
       <label htmlFor="game-mode" className="whitespace-nowrap cursor-pointer">
-        Switch to {gameMode === "resetMode" ? "Reset Mode" : "Three Moves Mode"}
+        Switch to {gameMode === "resetMode" ? "Three Moves Mode" : "Reset Mode"}
       </label>
     </div>
   );

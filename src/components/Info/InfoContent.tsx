@@ -1,6 +1,4 @@
-type Props = {};
-
-const InfoContent = (props: Props) => {
+const InfoContent = () => {
   return (
     <div className="flex flex-col items-start gap-2 px-2 py-3 w-[200px]">
       <div className="flex flex-col w-full">

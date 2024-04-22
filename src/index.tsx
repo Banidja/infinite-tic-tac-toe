@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { TicTacToeProvider } from "./providers/TicTacToeContext";
+import { TooltipProvider } from "./components/Tooltip";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <TicTacToeProvider>
-      <App />
+      <TooltipProvider>
+        <App />
+      </TooltipProvider>
     </TicTacToeProvider>
   </React.StrictMode>
 );

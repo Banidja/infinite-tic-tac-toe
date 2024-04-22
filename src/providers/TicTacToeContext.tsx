@@ -10,6 +10,7 @@ interface TicTacToeContextType {
   setMoveOrder: (moveOrder: Array<number>) => void;
   setSquares: (squares: Array<XAndO | null>) => void;
   toggleGameMode: () => void;
+  handleNextStarter: () => void;
 }
 
 const TicTacToeContext = createContext<TicTacToeContextType | undefined>(
@@ -23,6 +24,11 @@ export function TicTacToeProvider({ children }: { children: ReactNode }) {
     Array(9).fill(null)
   );
   const [gameMode, setGameMode] = useState<GameMode>("threeMoves");
+  const [startsWithX, setStartsWithX] = useState<boolean>(true);
+
+  const handleNextStarter = () => {
+    setStartsWithX(!startsWithX);
+  };
 
   const toggleGameMode = () => {
     setGameMode((prevMode) => {
@@ -42,6 +48,7 @@ export function TicTacToeProvider({ children }: { children: ReactNode }) {
         setMoveOrder,
         setSquares,
         toggleGameMode,
+        handleNextStarter,
       }}
     >
       {children}
