@@ -4,12 +4,14 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div className="flex w-full h-screen gap-20">
-      <div className="flex flex-col w-full items-center mt-20">
+    <div className="flex w-full h-screen overflow-hidden">
+      <div className="flex flex-col items-center justify-center w-full">
         <Header />
         <Board />
       </div>
-      <Sidebar />
+      <div className="w-96 h-full fixed right-0 top-0">
+        <Sidebar />
+      </div>
     </div>
   );
 }

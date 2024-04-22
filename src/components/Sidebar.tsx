@@ -1,4 +1,6 @@
 import { useTicTacToeContext } from "../providers/TicTacToeContext";
+import Info from "./Info/Info";
+import { Switch } from "./Switch";
 
 type Props = {};
 
@@ -17,12 +19,20 @@ const Sidebar = (props: Props) => {
     handleReset();
   };
 
+  console.log("gameMode", gameMode);
+
   return (
-    <button onClick={handleToggleMode} className="text-2xl font-bold ml-4">
-      {gameMode === "threeMoves"
-        ? "Switch to Reset Mode"
-        : "Switch to Three Moves Mode"}
-    </button>
+    <div className="flex items-center space-x-2 py-[325px]">
+      <Info />
+      <Switch
+        onCheckedChange={handleToggleMode}
+        checked={gameMode === "threeMoves"}
+        id="game-mode"
+      />
+      <label htmlFor="game-mode" className="whitespace-nowrap cursor-pointer">
+        Switch to {gameMode === "resetMode" ? "Reset Mode" : "Three Moves Mode"}
+      </label>
+    </div>
   );
 };
 
