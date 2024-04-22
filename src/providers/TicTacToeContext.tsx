@@ -1,13 +1,15 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { XAndO } from "../types";
+import { GameMode, XAndO } from "../types";
 
 interface TicTacToeContextType {
   isXNext: boolean;
   moveOrder: Array<number>;
   squares: Array<XAndO | null>;
+  gameMode: GameMode;
   setIsXNext: (isXNext: boolean) => void;
   setMoveOrder: (moveOrder: Array<number>) => void;
   setSquares: (squares: Array<XAndO | null>) => void;
+  toggleGameMode: () => void;
 }
 
 const TicTacToeContext = createContext<TicTacToeContextType | undefined>(
@@ -20,6 +22,14 @@ export function TicTacToeProvider({ children }: { children: ReactNode }) {
   const [squares, setSquares] = useState<Array<XAndO | null>>(
     Array(9).fill(null)
   );
+  const [gameMode, setGameMode] = useState<GameMode>("threeMoves");
+
+  const toggleGameMode = () => {
+    setGameMode((prevMode) => {
+      if (prevMode === "threeMoves") return "resetMode";
+      return "threeMoves";
+    });
+  };
 
   return (
     <TicTacToeContext.Provider
@@ -27,9 +37,11 @@ export function TicTacToeProvider({ children }: { children: ReactNode }) {
         isXNext,
         moveOrder,
         squares,
+        gameMode,
         setIsXNext,
         setMoveOrder,
         setSquares,
+        toggleGameMode,
       }}
     >
       {children}

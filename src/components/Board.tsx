@@ -1,12 +1,21 @@
 import { calculateWinner } from "../lib/calculateWinner";
+import { resetFilledLines } from "../lib/resetFilledLines";
 import useScoreStore from "../lib/store";
 import { useTicTacToeContext } from "../providers/TicTacToeContext";
 import Score from "./Score";
 import Square from "./Square";
 
 const Board = () => {
-  const { isXNext, moveOrder, squares, setIsXNext, setMoveOrder, setSquares } =
-    useTicTacToeContext();
+  const {
+    isXNext,
+    moveOrder,
+    gameMode,
+    squares,
+    setIsXNext,
+    setMoveOrder,
+    setSquares,
+    toggleGameMode,
+  } = useTicTacToeContext();
 
   const { increaseScore, restartScore } = useScoreStore();
 
@@ -15,29 +24,34 @@ const Board = () => {
 
     const newSquares = squares.slice();
     const player = isXNext ? "X" : "O";
+    newSquares[index] = player;
 
-    if (moveOrder.length === 6) {
-      const indexToRemove = moveOrder.findIndex(
-        (ind) => squares[ind] === player
-      );
-      if (indexToRemove !== -1) {
-        newSquares[moveOrder[indexToRemove]] = null;
-        moveOrder.splice(indexToRemove, 1);
+    if (gameMode === "resetMode") {
+      const updatedSquares = resetFilledLines(newSquares);
+      setSquares(updatedSquares);
+    } else {
+      moveOrder.push(index);
+
+      if (moveOrder.length === 6) {
+        const indexToRemove = moveOrder.findIndex(
+          (ind) => squares[ind] === player
+        );
+        if (indexToRemove !== -1) {
+          newSquares[moveOrder[indexToRemove]] = null;
+          moveOrder.splice(indexToRemove, 1);
+        }
       }
+
+      setSquares(newSquares);
     }
 
-    newSquares[index] = player;
-    setSquares(newSquares);
     setIsXNext(!isXNext);
-    moveOrder.push(index);
 
     const winner = calculateWinner(newSquares);
+
     if (winner) {
       increaseScore(player);
-      setSquares(Array(9).fill(null));
-      setMoveOrder([]);
-      setIsXNext(true);
-      return;
+      handleReset();
     }
   };
 
