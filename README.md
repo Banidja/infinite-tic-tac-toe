@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# Infinite Tic Tac Toe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Infinite Tic Tac Toe app! 🎮
 
-## Available Scripts
+You can play Tic Tac Toe against other players and enjoy two exciting game modes. Check out the live app [here](https://infinite-tic-tac-toe.vercel.app/).
 
-In the project directory, you can run:
+## Game Modes
 
-### `npm start`
+### 1. Three Moves Mode
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Each player can only have three marks on the board at a time.
+- When a player makes a fourth mark, the oldest mark is removed from the board.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Reset Mode
 
-### `npm test`
+- If any row, column, or diagonal is filled without resulting in a win, those spaces are cleared.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **Play against other players:** Engage in classic Tic Tac Toe gameplay with a friend.
+- **Mode Selection:** Choose between "Three Moves Mode" and "Reset Mode" for different gameplay experiences.
+- **Real-time updates:** See changes and updates immediately as you and your opponent make moves.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Access the App:**
+   Visit [Infinite Tic Tac Toe](https://infinite-tic-tac-toe.vercel.app/) to start playing.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Game Play:**
+   - Choose your mode.
+   - Start a game with another player.
+   - Follow the rules for the selected mode and aim to win!
 
-### `npm run eject`
+## Development
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+If you're interested in the development details or want to contribute, you can find the source code on [GitHub](#).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Node.js
+- npm or yarn
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Installation
 
-## Learn More
+Clone the repository:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git clone git@github.com:Banidja/infinite-tic-tac-toe.git
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Navigate into the project directory:
+
+```
+cd infinite-tic-tac-toe
+```
+
+### Install dependencies:
+
+```bash
+npm i
+```
+
+### Open your browser and go to http://localhost:3000 to see the app in action.
+
+# License
+
+## This project is licensed under the MIT License - see the LICENSE file for details.
