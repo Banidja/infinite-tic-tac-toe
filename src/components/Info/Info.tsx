@@ -8,7 +8,12 @@ const Info = () => {
       <TooltipTrigger>
         <InfoIcon className="text-gray-300" />
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent
+        className="transition-all duration-200"
+        side="bottom"
+        align="center"
+        sideOffset={20}
+      >
         <InfoContent />
       </TooltipContent>
     </Tooltip>

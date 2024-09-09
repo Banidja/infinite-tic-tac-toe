@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex items-center space-x-2 py-[325px]">
+    <div className="flex items-center space-x-2 pt-4 pb-20 lg:py-[325px]">
       <Info />
       <Switch
         onCheckedChange={handleToggleMode}
