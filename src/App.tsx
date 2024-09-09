@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <div className="flex flex-col lg:flex-row w-full h-screen overflow-auto">
+    <div className="flex flex-col bg-gray-800 text-white lg:flex-row w-full h-screen overflow-auto">
       <div className="flex flex-col items-center justify-center flex-1 w-full lg:w-auto lg:mr-2">
         <Header />
         <Board />
