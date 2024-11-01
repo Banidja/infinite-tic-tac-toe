@@ -1,10 +1,10 @@
-import { useTicTacToeContext } from "../providers/TicTacToeContext";
+import useTicTacToeStore from "../lib/stores/ticTacToesStore";
 import Info from "./Info/Info";
 import { Switch } from "./Switch";
 
 const Sidebar = () => {
   const { gameMode, setIsXNext, setMoveOrder, setSquares, toggleGameMode } =
-    useTicTacToeContext();
+    useTicTacToeStore();
 
   const handleReset = () => {
     setSquares(Array(9).fill(null));

@@ -1,4 +1,4 @@
-import useScoreStore from "../lib/store";
+import useScoreStore from "../lib/stores/scoreStore";
 
 const Score = () => {
   const { scores } = useScoreStore();

@@ -1,5 +1,5 @@
-import create from "zustand";
-import { XAndO } from "../types";
+import { create } from "zustand";
+import { XAndO } from "../../types";
 
 const storageKey = "score";
 

@@ -1,7 +1,7 @@
-import { useTicTacToeContext } from "../providers/TicTacToeContext";
+import useTicTacToeStore from "../lib/stores/ticTacToesStore";
 
 const Header = () => {
-  const { isXNext } = useTicTacToeContext();
+  const { isXNext } = useTicTacToeStore();
 
   return (
     <div className="w-full justify-center flex my-10">

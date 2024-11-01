@@ -1,7 +1,7 @@
 import { calculateWinner } from "../lib/calculateWinner";
 import { resetFilledLines } from "../lib/resetFilledLines";
-import useScoreStore from "../lib/store";
-import { useTicTacToeContext } from "../providers/TicTacToeContext";
+import useScoreStore from "../lib/stores/scoreStore";
+import useTicTacToeStore from "../lib/stores/ticTacToesStore";
 import { XAndO } from "../types";
 import Score from "./Score";
 import Square from "./Square";
@@ -16,7 +16,7 @@ const Board = () => {
     setMoveOrder,
     setSquares,
     handleNextStarter,
-  } = useTicTacToeContext();
+  } = useTicTacToeStore();
 
   const { increaseScore, restartScore } = useScoreStore();
 
