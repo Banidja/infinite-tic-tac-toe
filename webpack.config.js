@@ -12,6 +12,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    modulesDirectories: [
+        'node_modules'
+    ]  
   },
   module: {
     rules: [
