@@ -12,7 +12,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    modulesDirectories: [
+    modules: [
         'node_modules'
     ]  
   },
